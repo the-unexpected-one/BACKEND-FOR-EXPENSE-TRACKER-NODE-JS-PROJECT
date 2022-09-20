@@ -1,4 +1,5 @@
 const path = require('path');
+const sequelize= require('./util/database');
 
 const express = require('express');
 
@@ -13,4 +14,12 @@ const signup=require('./routes/signup')
 
 app.use(signup)
 
-app.listen(8000)
+sequelize
+.sync()
+.then((result)=>{
+    app.listen(8000)
+}).catch(err=>{
+    console.log(err)
+})
+
+// app.listen(8000)
