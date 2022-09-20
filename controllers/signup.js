@@ -1,3 +1,4 @@
+const { where } = require('sequelize');
 const User= require('../models/expenseUsers');
 // const { unsubscribe } = require('../routes/signup');
 
@@ -24,6 +25,18 @@ User.create({
 }
 
 exports.login=(req,res,next)=>{
-    console.log(req.body.emailid)
+const email=req.body.emailid;
+const pass=req.body.password;
+User.findAll({where:{emailid:email}}).then((user)=>{
+    if(user[0].password==pass){
+        res.status(200).json({success:true, message:'User Login Succesfull'}) 
+    }
+    else{
+        res.status(401).json({success:false, message:'User not authorised'})
+    }
+    // console.log('1')
+}).catch(err=>{
+    res.status(404).json({success:false, message:'User not found'})
+})
     res.status(200)
 }
