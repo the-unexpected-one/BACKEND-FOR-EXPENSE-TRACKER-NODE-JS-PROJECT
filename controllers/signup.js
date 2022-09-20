@@ -22,3 +22,8 @@ User.create({
 
 
 }
+
+exports.login=(req,res,next)=>{
+    console.log(req.body.emailid)
+    res.status(200)
+}
