@@ -11,8 +11,11 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
 app.use(cors())
 const signup=require('./routes/signup')
+const addexpense=require('./routes/addexpense')
 
 app.use(signup)
+
+app.use(addexpense)
 
 sequelize
 .sync()

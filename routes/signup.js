@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 
 const signupController = require('../controllers/signup');
-const { sign } = require('crypto');
+
 
 const router = express.Router();
 
