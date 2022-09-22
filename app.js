@@ -9,9 +9,18 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
+
+const Expenses=require('./models/addexpense');
+const User=require('./models/expenseUsers')
+
 app.use(cors())
 const signup=require('./routes/signup')
 const addexpense=require('./routes/addexpense')
+
+User.hasMany(Expenses);
+Expenses.belongsTo(User)
+
+
 
 app.use(signup)
 

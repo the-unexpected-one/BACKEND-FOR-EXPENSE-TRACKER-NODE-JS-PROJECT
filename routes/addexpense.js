@@ -1,13 +1,14 @@
 const path = require('path');
+const userauthentication=require('../middleware/auth')
 
 const express = require('express');
 
 const addexpenseController=require('../controllers/addexpense'); 
-const { route } = require('./signup');
+
 
 const router = express.Router();
 
-router.get('/expenses',addexpenseController.getexpense)
+router.get('/expenses', userauthentication.authenticate ,addexpenseController.getexpense)
 
 router.post('/addexpense',addexpenseController.postaddExpense)
 

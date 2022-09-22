@@ -1,6 +1,6 @@
 const addExpense=require('../models/addexpense')
 
-
+const jwt =require('jsonwebtoken')
 const bcrypt=require('bcrypt');
 
 exports.postaddExpense=(req,res,next)=>{
@@ -10,10 +10,15 @@ exports.postaddExpense=(req,res,next)=>{
     // console.log(name)
     const desc=req.body.cat;
     const category=req.body.man;
+    const token=req.header('Authorization');
+        console.log(token);
+    const user=jwt.verify(token, '987654321ghijklmn')
+    const userId=user.userId
     addExpense.create({
        amount:amt,
         description:desc,
-        category:category
+        category:category,
+        expenseUserId:userId
     }).then(result=>{
         // res.json(name)
         console.log('Expense Created');
@@ -26,7 +31,7 @@ exports.postaddExpense=(req,res,next)=>{
 
 exports.getexpense=(req,res,next)=>{
     console.log(req)
-    addExpense.findAll().then(users=>{
+    addExpense.findAll({where:{expenseUserId:req.user.id}}).then(users=>{
         // console.log(users)
         res.json(users)
     }).catch(err=>{

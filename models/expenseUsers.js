@@ -13,7 +13,7 @@ const expenseUser=sequelize.define('expenseUser',{
     emailid:{
         type:Sequelize.STRING,
         unique:true,
-        primaryKey:true
+        // primaryKey:true
     },
     password:Sequelize.STRING,
 });
