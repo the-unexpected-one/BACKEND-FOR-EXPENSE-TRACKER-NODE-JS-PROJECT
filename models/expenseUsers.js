@@ -16,6 +16,7 @@ const expenseUser=sequelize.define('expenseUser',{
         // primaryKey:true
     },
     password:Sequelize.STRING,
+    ispremium:Sequelize.BOOLEAN
 });
 
 module.exports=expenseUser;
