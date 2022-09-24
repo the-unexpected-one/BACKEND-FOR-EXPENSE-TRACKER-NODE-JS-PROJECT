@@ -1,7 +1,7 @@
 const jwt=require('jsonwebtoken');
 const User=require('../models/expenseUsers');
 
-exports.authenticate=(req,res,next)=>{
+exports.authenticate=async (req,res,next)=>{
 
     try{
         const token=req.header('Authorization');
