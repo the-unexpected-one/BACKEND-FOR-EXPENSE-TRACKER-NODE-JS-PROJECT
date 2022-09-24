@@ -18,6 +18,7 @@ app.use(cors())
 const signup=require('./routes/signup')
 const addexpense=require('./routes/addexpense')
 const purchase=require('./routes/purchase')
+const forgotPass=require('./routes/forgotPass')
 
 User.hasMany(Expenses);
 Expenses.belongsTo(User)
@@ -32,6 +33,8 @@ app.use(signup)
 app.use(addexpense)
 
 app.use(purchase)
+
+app.use(forgotPass)
 
 sequelize
 .sync()
