@@ -19,6 +19,7 @@ const signup=require('./routes/signup')
 const addexpense=require('./routes/addexpense')
 const purchase=require('./routes/purchase')
 const forgotPass=require('./routes/forgotPass')
+const backendreport=require('./routes/backendreport')
 
 User.hasMany(Expenses);
 Expenses.belongsTo(User)
@@ -35,6 +36,8 @@ app.use(addexpense)
 app.use(purchase)
 
 app.use(forgotPass)
+
+app.use(backendreport)
 
 sequelize
 .sync()
